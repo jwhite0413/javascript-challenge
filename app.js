@@ -1,7 +1,5 @@
-// from data.js
-var tableData = data;
+var filterData = data;
 
-// YOUR CODE HERE!
 var tbody = d3.select("tbody");
 
 var filterEntries = d3.select ("#filter-btn");
@@ -47,11 +45,12 @@ function buildTable (date, city, state, country, shape) {
 
     if (state !== "") {
         filteredData = filteredData.filter(data => data.state == state);
+        
     };
-    if (country !== "") {
+    if (country !=="") {
         filteredData = filteredData.filter(data => data.country == country);
     };
-    if (shape !== "") {
+    if (shape !=="" ) {
         filteredData = filteredData.filter(data => data.shape == shape);
     };
     console.log(filteredData);
@@ -63,3 +62,4 @@ function buildTable (date, city, state, country, shape) {
             cell.text(value);
         });
     });
+};
