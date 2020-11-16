@@ -61,5 +61,5 @@ function buildTable (date, city, state, country, shape) {
         Object.entries(sighting).forEach(([key,value]) => {
             var cell = row.append("td");
             cell.text(value);
-        });
-    });
+        }
+    }};
