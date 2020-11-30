@@ -4,7 +4,7 @@ var tableData = data;
 // YOUR CODE HERE!
 var tbody = d3.select("tbody");
 
-//get data and show all on page
+//Create table from data using function --> We assigned variable tableData to our data above. 
 tableData.forEach((ufodata) => {
     console.log(ufodata);
     var row = tbody.append('tr');
@@ -16,23 +16,28 @@ tableData.forEach((ufodata) => {
     });
 });
 
+//assign vairable to our button
 var button = d3.select("#filter-btn");
 // var form = d3.select ("#form");
 
 // var submit = d3.select("#filter-btn");
+
+//take variable and assign the action of "click" with a function defined below
 button.on("click", function() {
 
     // function runEnter() {
     d3.event.preventDefault();
     d3.select("tbody").html("");
 
-    var dateTime = d3.select("#datetime").property("value");
+    var inputdate = d3.select("#datetime").property("value");
     // console.log(dateTime);
 
-    var filteredData = tableData.filter(record => record.datetime === dateTime);
+    //search data records based on the user inputs
+    var datesearch = tableData.filter(record => record.datetime === inputdate);
     // console.log(filteredData);
 
-    filteredData.forEach((ufodata) => {
+    //show search results
+    dataeearch.forEach((ufodata) => {
         var row = tbody.append('tr');
 
         Object.entries(ufodata).forEach(([key, value]) => {
