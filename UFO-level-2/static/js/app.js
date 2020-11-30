@@ -4,6 +4,8 @@ var tableData = data;
 
 var tbody = d3.select("tbody");
 
+
+
 tableData.forEach(function(ufodata) {
     // console.log(ufodata);
 
@@ -17,35 +19,38 @@ tableData.forEach(function(ufodata) {
     });
 });
 
-var button = d3.select("#filter-btn");
+var buttonfilter = d3.select("#filter-btn");
 // var form = d3.select ("#form");
 
 // var submit = d3.select("#filter-btn");
-button.on("click", function() {
+buttonfilter.on("click", function() {
 
     // function runEnter() {
     d3.event.preventDefault();
     d3.select("tbody").html("");
-
-    var inputvalue = d3.select("#input").property("value");
+    var inputdate = d3.select("#datetime").property("value");
+    var inputcity = d3.select("#city").property("value").toLowerCase().trim();
+    var inputstate = d3.select("#state").property("value").toLowerCase().trim();
+    var inputecountry = d3.select("#country").property("value").toLowerCase().trim();
+    var inputshape = d3.select("#shape").property("value").toLowerCase().trim();
     // console.log(dateTime);
 
-    var filteredData = tableData.filter(record => record.datetime === inputvalue ||
-        record.city === inputvalue ||
-        record.state === inputvalue ||
-        record.country === inputvalue ||
-        record.shape === inputvalue);
+    var filteredData = tableData.filter(record => record.datetime === inputdate ||
+        record.city === inputcity ||
+        record.state === inputstate ||
+        record.country === inputecountry ||
+        record.shape === inputshape);
     console.log(filteredData);
 
-    // filteredData.forEach((ufodata) => {
-    //     var row = tbody.append('tr');
+    filteredData.forEach(function(inputs) {
+        var row = tbody.append('tr');
 
-    //     Object.entries(ufodata).forEach(([key, value]) => {
-    //         console.log(key, value);
-    //         var cell = row.append('td');
-    //         cell.text(value);
-    //     });
-    // });
+        Object.entries(inputs).forEach(function([key, value]) {
+            console.log(key, value);
+            var cell = row.append('td');
+            cell.text(value);
+        });
+    });
 });
 
 
